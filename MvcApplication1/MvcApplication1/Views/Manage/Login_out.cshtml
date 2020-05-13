@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Login_out";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+@using (Html.BeginForm("Login_out", "Manage", FormMethod.Post))
+{
+    <input type="submit" value="确定退出登录" />
+}

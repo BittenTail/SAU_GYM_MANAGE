@@ -1,0 +1,53 @@
+﻿@using MvcApplication1.Models
+@model Person
+@{
+    ViewBag.Title = "沈阳航空航天大学体育馆";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="background-image:url(/Images/体育馆2.jpg);width:100%;height:100%">
+    <div>
+        <table width="100%" height="580px">
+            <tr>
+                <td width="900px">
+                </td>
+
+                <td>
+                    <div style="background-color:#d8d4d4;padding-left:15px">
+                        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                        {
+                            <br />
+                            <br />
+                            <b>账号：@Html.TextBoxFor(m => m.number)</b>
+                            <br />
+                            <b>@Html.ValidationMessageFor(m => m.number)</b>
+                            <br />
+                            <b>密码：@Html.PasswordFor(m => m.password)</b>
+                            <br />
+                            <b>@Html.ValidationMessageFor(m => m.password)</b>
+                            <br />
+                            <b>@Html.CheckBoxFor(m => m.Remember)记住密码</b>
+                            <br />
+                            <b>@Html.ValidationMessageFor(m => m.Remember)</b>
+                            <br />
+                            <b>@Html.DropDownListFor(m => m.type, new SelectList(new List<SelectListItem>()
+                                                                    {
+                                                                        new SelectListItem() { Text = "普通人", Value = "0" },
+                                                                        new SelectListItem() { Text = "工作人员", Value = "1" }
+                                                                     }, "Value", "Text"))
+                             </b><br />
+                            <input type="submit" value="登录" />
+                            @Html.ActionLink("请前往注册！", "Regist")
+                        }
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

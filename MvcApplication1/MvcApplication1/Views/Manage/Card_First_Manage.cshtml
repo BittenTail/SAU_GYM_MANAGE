@@ -1,0 +1,45 @@
+﻿@using MvcApplication1.Models
+@model Person
+@{
+    ViewBag.Title = "沈阳航空航天大学体育馆";
+    Layout = "~/Views/Shared/_Layout_Card_Manage.cshtml";
+
+    var num = ViewBag.num;
+    var ds = ViewBag.set; 
+}
+
+<h2>人员显示</h2>
+
+<div style="padding-left:15px;padding-right:15px">
+    <table border="1" style="background-color:#ffffff" width="100%" height="auto">
+        <tr style="background-color:#00ff90">
+            <td></td>
+            <td>编号</td>
+            <td>姓名</td>
+            <td>账号</td>
+            <td>卡号</td>
+            <td>金额</td>
+            <td>信息</td>
+            <td></td>
+            <td></td>
+        </tr>
+        @for (int i = 0; i < num; i++)
+        {
+            String ID = ds.Tables[0].Rows[i].ItemArray[0].ToString();
+            <tr style=" backface-visibility :#d6c7c7">
+                <td>图</td>
+                <td>@i</td>
+                <td>@ds.Tables[0].Rows[i].ItemArray[1].ToString()</td>
+                <td>@ds.Tables[0].Rows[i].ItemArray[2].ToString()</td>
+                <td>@ds.Tables[0].Rows[i].ItemArray[4].ToString()</td>
+                <td>@ds.Tables[0].Rows[i].ItemArray[7].ToString()</td>
+                <td>@ds.Tables[0].Rows[i].ItemArray[5].ToString()</td>
+                <td>@Html.ActionLink("编辑", "Person_Second_Manage", new { PersonID = ID })</td>
+                <td>@Html.ActionLink("删除", "Person_Three_Manage", new { PersonID = ID })</td>
+            </tr>
+        }
+    </table>
+    <div style="padding-bottom:15px;padding-right:50px">
+
+    </div>
+</div>

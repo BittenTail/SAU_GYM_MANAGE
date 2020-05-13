@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "沈阳航空航天大学体育馆";
+    Layout = "~/Views/Shared/_Layout_Sport.cshtml";
+
+    var num = ViewBag.num;
+    var ds = ViewBag.set;
+}
+
+<h2>选择场地</h2>
+
+
+<div style="padding-left:15px;padding-right:15px">
+    <table border="1" style="background-color:#ffffff" width="100%" height="auto">
+        <tr style="background-color:#00ff90">
+            <td></td>
+            <td>编号</td>
+            <td>场地类型</td>
+            <td>场地可加入人数</td>
+            <td>场地当前状态</td>
+            <td>场地单价</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @for (int i = 0; i < num; i++)
+        {
+            String state = ds.Tables[0].Rows[i].ItemArray[2].ToString();
+            String ID = ds.Tables[0].Rows[i].ItemArray[0].ToString();
+            <tr style=" backface-visibility :#d6c7c7">
+                <td>图</td>
+                <td>@i</td>
+                <td>@ds.Tables[0].Rows[i].ItemArray[7].ToString()</td>
+                <td>
+                    @{
+            var max = int.Parse(@ds.Tables[0].Rows[i].ItemArray[4].ToString());
+            var now = int.Parse(@ds.Tables[0].Rows[i].ItemArray[5].ToString());
+            var use = max - now;
+                }@use
+            </td>
+            <td>
+                @switch (state)
+                {
+                    case "0": <b>空闲</b>; break;
+                    case "1": <b>爆满</b>; break;
+                    case "2": <b>预约</b>; break;
+                    case "3": <b>维护</b>; break;
+
+                }
+        </td>
+        <td>@ds.Tables[0].Rows[i].ItemArray[3].ToString()</td>
+        <td></td>
+        <td></td>
+        <td>@Html.ActionLink("加入", "Venue_Three_Manage", new { VenueID = ID })</td>
+        <td>@Html.ActionLink("详情", "Venue_Four_Manage", new { VenueID = ID })</td>
+    </tr>
+        }
+    </table>
+    <div style="padding-bottom:15px;padding-right:50px">
+
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@using MvcApplication1.Models
+@model Venue
+@{
+    ViewBag.Title = "Venue_Second_Manage";
+    Layout = "~/Views/Shared/_Layout_Venue_Manage.cshtml";
+    
+    var list = ViewBag.list;
+}
+
+<h2>场地新建</h2>
+<span>@Html.ActionLink("新建场地类别","Venue_New_Type")</span>
+<div style="padding-left:15px;padding-right:15px">
+    @using (Html.BeginForm("Venue_Second_Manage", "Manage", FormMethod.Post))
+    {
+        <b>请选择场地类别：@Html.DropDownListFor(m => m.type, new SelectList(list, "Value", "Text"))</b><br /><br />
+        
+       <b>请选择场地状态： @Html.DropDownListFor(m => m.state, new SelectList(new List<SelectListItem>()
+                                                                    {
+                                                                        new SelectListItem() { Text = "空闲", Value = "0" },
+                                                                        new SelectListItem() { Text = "爆满", Value = "1" },
+                                                                        new SelectListItem() { Text = "预约", Value = "2" },
+                                                                        new SelectListItem() { Text = "维护", Value = "3" },
+                                                                     }, "Value", "Text"))</b><br /><br />
+        
+        <b>单价：@Html.TextBoxFor(m => m.price)</b>
+        <br />
+        <b>@Html.ValidationMessageFor(m => m.price)</b>
+        <br />
+        <b>最大人数：@Html.TextBoxFor(m => m.maxnumber)</b>
+        <br />
+        <b>@Html.ValidationMessageFor(m => m.maxnumber)</b>
+        <br />
+        <b>当前人数：0</b>
+        <br />
+        <input type="submit" value="添加场地" />
+    }
+</div>

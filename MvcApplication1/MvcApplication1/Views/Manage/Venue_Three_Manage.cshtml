@@ -1,0 +1,43 @@
+﻿@using MvcApplication1.Models
+@model Venue
+@{
+    ViewBag.Title = "Venue_Three_Manage";
+    Layout = "~/Views/Shared/_Layout_Venue_Manage.cshtml";
+
+    var list = ViewBag.list;
+    var Max = ViewBag.max;
+    var ID = ViewBag.venueid;
+}
+
+<h2>@ID<B>号场地编辑</B></h2><br />
+<div style="padding-left:15px;padding-right:15px">
+    <h2>@Html.ActionLink("<= 返回", "Venue_First_Manage")</h2>
+    @using (Html.BeginForm("Venue_Three_Manage", "Manage", FormMethod.Post))
+    {
+        <b>请选择场地类别：@Html.DropDownListFor(m => m.type, new SelectList(list, "Value", "Text"))</b><br /><br />
+
+        <b>
+            请选择场地状态： @Html.DropDownListFor(m => m.state, new SelectList(new List<SelectListItem>()
+                                                                    {
+                                                                        new SelectListItem() { Text = "空闲", Value = "0" },
+                                                                        new SelectListItem() { Text = "爆满", Value = "1" },
+                                                                        new SelectListItem() { Text = "预约", Value = "2" },
+                                                                        new SelectListItem() { Text = "维护", Value = "3" },
+                                                                     }, "Value", "Text"))
+        </b><br /><br />
+
+        <b>单价：@Html.TextBoxFor(m => m.price)</b>
+        <br />
+        <b>@Html.ValidationMessageFor(m => m.price)</b>
+        <br />
+        <b>最大人数：@Html.TextBoxFor(m => m.maxnumber)</b>
+        <br />
+        <b>@Html.ValidationMessageFor(m => m.maxnumber)</b>
+        <br />
+        <b>当前人数：@Html.TextBoxFor(m => m.nownumber)</b>
+        <br />
+        <b>@Html.ValidationMessageFor(m => m.nownumber)</b>
+    <br />
+        <input type="submit" value="确认修改" />
+    }
+</div>

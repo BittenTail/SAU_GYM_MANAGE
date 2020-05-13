@@ -1,0 +1,43 @@
+﻿@using MvcApplication1.Models
+@model Person
+@{
+    ViewBag.Title = "账号注册";
+}
+
+<div style="width:100%;height:580px;padding-left:15px">
+    @using (Html.BeginForm("Regist", "Home", FormMethod.Post))
+    {
+        <b>姓 名：@Html.TextBoxFor(m => m.name)</b>
+        <br />
+        <b>@Html.ValidationMessageFor(m => m.name)</b>
+        <br />
+        
+        <b>手机号：@Html.TextBoxFor(m => m.number)</b>
+        <br />
+        <b>@Html.ValidationMessageFor(m => m.number)</b>
+        <br />
+        
+        <b>密 码：@Html.PasswordFor(m => m.password)</b>
+        <br />
+        <b>@Html.ValidationMessageFor(m => m.password)</b>
+        <br />
+        
+        <b>确认密码：@Html.PasswordFor(m => m.confirmPassword)</b>
+        <br />
+        <b>@Html.ValidationMessageFor(m => m.confirmPassword)</b><br />
+        
+        <b>选择账号类型：@Html.DropDownListFor(m => m.type, new SelectList(new List<SelectListItem>()
+                                                                    {
+                                                                        new SelectListItem() { Text = "普通人", Value = "0" },
+                                                                        new SelectListItem() { Text = "工作人员", Value = "1" }
+                                                                     }, "Value", "Text"))
+         </b><br />
+        <b>个人备注信息：@Html.TextAreaFor(m => m.info)</b>
+        <br />
+        <input type="submit" value="注册"/>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

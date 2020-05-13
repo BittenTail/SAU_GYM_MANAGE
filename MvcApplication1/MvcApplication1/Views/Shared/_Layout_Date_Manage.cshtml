@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title </title>
+    <link href="~/favicon1.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <a href="~/Manage/Sport_First"><img src="~/Images/校标.jpg" width="65px" height="65px" /></a>
+                <b style="padding-bottom:15px">沈阳航空航天大学体育馆</b>
+            </div>
+            <div class="float-left">
+                <section id="login">
+                    你好，<span class="username">@User.Identity.Name</span>!
+                </section>
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("加入运动", "Sport_First_Manage", "Manage")</li>
+                        <li>@Html.ActionLink("场馆", "Venue_First_Manage", "Manage")</li>
+                        <li>@Html.ActionLink("卡片", "Card_First_Manage", "Manage")</li>
+                        <li>@Html.ActionLink("人员", "Person_First_Manage", "Manage")</li>
+                        <li>@Html.ActionLink("数据", "Date_First_Manage", "Manage")</li>
+                        <li>@Html.ActionLink("个人信息", "Login_First_Manage", "Manage")</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <div style="width:100%;height:580px">
+            <div style="width:15%;height:100%;position:absolute;left:0px;top:auto;height:580px;background-color:#ada6a6">
+                <nav>
+                    <ul id="menu1">
+                        <li>@Html.ActionLink("场馆使用数据", "Date_First_Manage", "Manage")</li><br />
+                    </ul>
+                </nav>
+            </div>
+            <div style="width:85%;height:100%;position:absolute;left:15%;top:auto;height:580px">
+                @RenderSection("featured", required: false)
+                <section class="content-wrapper main-content clear-fix">
+                    @RenderBody()
+                </section>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day</p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
+
+
